@@ -1570,10 +1570,10 @@ class InAppWebViewController {
   ///The Android implementation uses [addJavascriptInterface](https://developer.android.com/reference/android/webkit/WebView#addJavascriptInterface(java.lang.Object,%20java.lang.String)).
   ///The iOS implementation uses [addScriptMessageHandler](https://developer.apple.com/documentation/webkit/wkusercontentcontroller/1537172-addscriptmessagehandler?language=objc)
   ///
-  ///The JavaScript function that can be used to call the handler is `window.flutter_inappwebview.callHandler(handlerName <String>, ...args)`, where `args` are [rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
+  ///The JavaScript function that can be used to call the handler is `bridge.callHandler(handlerName <String>, ...args)`, where `args` are [rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
   ///The `args` will be stringified automatically using `JSON.stringify(args)` method and then they will be decoded on the Dart side.
   ///
-  ///In order to call `window.flutter_inappwebview.callHandler(handlerName <String>, ...args)` properly, you need to wait and listen the JavaScript event `flutterInAppWebViewPlatformReady`.
+  ///In order to call `bridge.callHandler(handlerName <String>, ...args)` properly, you need to wait and listen the JavaScript event `flutterInAppWebViewPlatformReady`.
   ///This event will be dispatched as soon as the platform (Android or iOS) is ready to handle the `callHandler` method.
   ///```javascript
   ///   window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
@@ -1581,7 +1581,7 @@ class InAppWebViewController {
   ///   });
   ///```
   ///
-  ///`window.flutter_inappwebview.callHandler` returns a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+  ///`bridge.callHandler` returns a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
   ///that can be used to get the json result returned by [JavaScriptHandlerCallback].
   ///In this case, simply return data that you want to send and it will be automatically json encoded using [jsonEncode] from the `dart:convert` library.
   ///
@@ -1589,11 +1589,11 @@ class InAppWebViewController {
   ///```html
   ///<script>
   ///   window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-  ///     window.flutter_inappwebview.callHandler('handlerFoo').then(function(result) {
+  ///     bridge.callHandler('handlerFoo').then(function(result) {
   ///       console.log(result);
   ///     });
   ///
-  ///     window.flutter_inappwebview.callHandler('handlerFooWithArgs', 1, true, ['bar', 5], {foo: 'baz'}).then(function(result) {
+  ///     bridge.callHandler('handlerFooWithArgs', 1, true, ['bar', 5], {foo: 'baz'}).then(function(result) {
   ///       console.log(result);
   ///     });
   ///   });
@@ -1604,7 +1604,7 @@ class InAppWebViewController {
   ///```dart
   ///  // Inject JavaScript that will receive data back from Flutter
   ///  inAppWebViewController.evaluateJavascript(source: """
-  ///    window.flutter_inappwebview.callHandler('test', 'Text from Javascript').then(function(result) {
+  ///    bridge.callHandler('test', 'Text from Javascript').then(function(result) {
   ///      console.log(result);
   ///    });
   ///  """);
@@ -1613,7 +1613,7 @@ class InAppWebViewController {
   ///Forbidden names for JavaScript handlers are defined in [_JAVASCRIPT_HANDLER_FORBIDDEN_NAMES].
   ///
   ///**NOTE**: This method should be called, for example, in the [WebView.onWebViewCreated] or [WebView.onLoadStart] events or, at least,
-  ///before you know that your JavaScript code will call the `window.flutter_inappwebview.callHandler` method,
+  ///before you know that your JavaScript code will call the `bridge.callHandler` method,
   ///otherwise you won't be able to intercept the JavaScript message.
   ///
   ///**Supported Platforms/Implementations**:

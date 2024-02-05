@@ -612,7 +612,7 @@ void main() {
         <head><title>Resize test</title>
           <script type="text/javascript">
             function onResize() {
-              window.flutter_inappwebview.callHandler('resize')
+              bridge.callHandler('resize')
             }
             function onLoad() {
               window.onresize = onResize;
@@ -2123,12 +2123,12 @@ void main() {
                 body: "firstname=Foo&lastname=Bar"
             }).then(function(response) {
                 response.json().then(function(value) {
-                  window.flutter_inappwebview.callHandler('fetchPost', value);
+                  bridge.callHandler('fetchPost', value);
                 }).catch(function(error) {
-                  window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                  bridge.callHandler('fetchPost', "ERROR: " + error);
                 });
             }).catch(function(error) {
-              window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+              bridge.callHandler('fetchPost', "ERROR: " + error);
             });
           });
         </script>
@@ -2207,12 +2207,12 @@ void main() {
                 body: JSON.stringify(jsonData)
             }).then(function(response) {
                 response.json().then(function(value) {
-                  window.flutter_inappwebview.callHandler('fetchPost', value);
+                  bridge.callHandler('fetchPost', value);
                 }).catch(function(error) {
-                    window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                    bridge.callHandler('fetchPost', "ERROR: " + error);
                 });
             }).catch(function(error) {
-                window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                bridge.callHandler('fetchPost', "ERROR: " + error);
             });
           });
         </script>
@@ -2291,12 +2291,12 @@ void main() {
                 body: searchParams
             }).then(function(response) {
                 response.json().then(function(value) {
-                  window.flutter_inappwebview.callHandler('fetchPost', value);
+                  bridge.callHandler('fetchPost', value);
                 }).catch(function(error) {
-                    window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                    bridge.callHandler('fetchPost', "ERROR: " + error);
                 });
             }).catch(function(error) {
-                window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                bridge.callHandler('fetchPost', "ERROR: " + error);
             });
           });
         </script>
@@ -2371,12 +2371,12 @@ void main() {
                 body: formData
             }).then(function(response) {
                 response.json().then(function(value) {
-                  window.flutter_inappwebview.callHandler('fetchPost', value);
+                  bridge.callHandler('fetchPost', value);
                 }).catch(function(error) {
-                    window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                    bridge.callHandler('fetchPost', "ERROR: " + error);
                 });
             }).catch(function(error) {
-                window.flutter_inappwebview.callHandler('fetchPost', "ERROR: " + error);
+                bridge.callHandler('fetchPost', "ERROR: " + error);
             });
           });
         </script>
