@@ -1,54 +1,41 @@
-group 'com.pichillilorenzo.flutter_inappwebview'
+group 'io.flutter.plugins.webviewflutter'
 version '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
         google()
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        vectorDrawables.useSupportLibrary = true
-        consumerProguardFiles 'proguard-rules.pro'
     }
     lintOptions {
         disable 'InvalidPackage'
     }
-    buildTypes {
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+
     dependencies {
-        implementation 'androidx.webkit:webkit:1.5.0'
-        implementation 'androidx.browser:browser:1.4.0'
-        implementation 'androidx.appcompat:appcompat:1.5.1'
-        implementation 'com.squareup.okhttp3:okhttp:3.14.9'
-        implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+        implementation 'androidx.annotation:annotation:1.0.0'
+        implementation 'androidx.webkit:webkit:1.0.0'
+        compile 'com.github.lzyzsd:jsbridge:1.0.4'
     }
 }
