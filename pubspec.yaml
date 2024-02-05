@@ -4,7 +4,7 @@ version: 0.1.4
 homepage: https://github.com/epoll-j/bridge_webview_flutter
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: '>=3.0.6 <4.0.0'
   flutter: ">=1.12.13+hotfix.5"
 
 dependencies:
